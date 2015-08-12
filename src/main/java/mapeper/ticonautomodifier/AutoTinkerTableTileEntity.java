@@ -12,6 +12,8 @@ import net.minecraftforge.common.util.Constants;
 //http://www.minecraftforge.net/wiki/Containers_and_GUIs
 public class AutoTinkerTableTileEntity extends TileEntity implements ISidedInventory
 {
+	public static final int MODSLOT = AutoTinkerTableContainer.MODSLOT;
+	public static final int TOOLSLOT = AutoTinkerTableContainer.TOOLSLOT;
 	ItemStack[] inventory;
 
 	public AutoTinkerTableTileEntity() {
@@ -126,33 +128,22 @@ public class AutoTinkerTableTileEntity extends TileEntity implements ISidedInven
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack)
 	{
-		if (slot == 1) return TinkerUtils.isModifyableTool(stack);
+		if (slot == TOOLSLOT) return TinkerUtils.isModifyableTool(stack);
 		return true;
 	}
 
-	int i = 0;
 	@Override
 	public void updateEntity() {
-		i = (i + 1)%2;
-		if (i != 0) return;
 		if (!this.worldObj.isRemote) {
-			if (inventory[0] != null && inventory[0].stackSize >= 1 && inventory[1] != null) {
-				ItemStack modifierCopy = inventory[0].copy();
+			if (inventory[MODSLOT] != null && inventory[MODSLOT].stackSize >= 1 && inventory[TOOLSLOT] != null) {
+				ItemStack modifierCopy = inventory[MODSLOT].copy();
 				modifierCopy.stackSize = 1;
-				boolean didModify = false;
-				for (int i = 0; i < Math.min(inventory[1].stackSize, 8); i++)
+
+				ItemStack modifyResult = TinkerUtils.modifyItem(inventory[TOOLSLOT], new ItemStack[]{modifierCopy.copy()});
+				if (modifyResult != null)
 				{
-					ItemStack modifyResult = TinkerUtils.modifyItem(inventory[1], new ItemStack[]{modifierCopy.copy()});
-					if (modifyResult != null)
-					{
-						decrStackSize(0, 1);
-						inventory[1] = modifyResult;
-						didModify = true;
-					} else {
-						break;
-					}
-				}
-				if (didModify) {
+					decrStackSize(MODSLOT, 1);
+					inventory[TOOLSLOT] = modifyResult;
 					this.markDirty();
 				}
 			}
