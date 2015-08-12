@@ -1,6 +1,7 @@
 package mapeper.ticonautomodifier;
 
 import net.minecraft.item.ItemStack;
+import scala.Int;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -8,9 +9,12 @@ import java.lang.reflect.Method;
 
 public class TinkerUtils
 {
+	//
 	static Method modifyItemMethod;
 	static Object modifyBuilderInstance;
 	static Class iModifyable;
+	//drawToolStats (ItemStack stack, int x, int y)
+	static Method drawToolStatsMethod;
 	static {
 		try
 		{
@@ -20,6 +24,9 @@ public class TinkerUtils
 			modifyItemMethod = clazz.getMethod("modifyItem", ItemStack.class, ItemStack[].class);
 
 			iModifyable = Class.forName("tconstruct.library.modifier.IModifyable");
+
+			clazz = Class.forName("tconstruct.tools.gui.ToolStationGuiHelper");
+			drawToolStatsMethod = clazz.getMethod("drawToolStats", ItemStack.class, int.class, int.class);
 		} catch (ClassNotFoundException e)
 		{
 			e.printStackTrace();
@@ -61,5 +68,20 @@ public class TinkerUtils
 
 	public static boolean isModifyableTool(ItemStack stack) {
 		return stack != null && stack.getItem() != null && iModifyable.isInstance(stack.getItem());
+	}
+
+	public static void drawToolStats(ItemStack item, int x, int y) {
+		if (drawToolStatsMethod != null && isModifyableTool(item)) {
+			try
+			{
+				drawToolStatsMethod.invoke(null, item, x, y);
+			} catch (IllegalAccessException e)
+			{
+				e.printStackTrace();
+			} catch (InvocationTargetException e)
+			{
+				e.printStackTrace();
+			}
+		}
 	}
 }

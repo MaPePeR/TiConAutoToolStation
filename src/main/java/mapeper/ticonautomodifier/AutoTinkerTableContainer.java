@@ -8,12 +8,14 @@ import net.minecraft.item.ItemStack;
 
 public class AutoTinkerTableContainer extends Container
 {
+	public static final int MODSLOT = 0;
+	public static final int TOOLSLOT = 1;
 	AutoTinkerTableTileEntity tileEntity;
 	public AutoTinkerTableContainer (InventoryPlayer inventoryPlayer, AutoTinkerTableTileEntity te){
 		tileEntity = te;
 
-		addSlotToContainer(new Slot(tileEntity, 0, 62, 17));
-		addSlotToContainer(new Slot(tileEntity, 1, 62, 17 + 18));
+		addSlotToContainer(new Slot(tileEntity, MODSLOT, 56 + 111, 37 + 1));
+		addSlotToContainer(new Slot(tileEntity, TOOLSLOT, 225, 38));
 
 		//commonly used vanilla code that adds the player's inventory
 		bindPlayerInventory(inventoryPlayer);
@@ -29,12 +31,12 @@ public class AutoTinkerTableContainer extends Container
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 9; j++) {
 				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9,
-						8 + j * 18, 84 + i * 18));
+						118 + j * 18, 84 + i * 18));
 			}
 		}
 
 		for (int i = 0; i < 9; i++) {
-			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142));
+			addSlotToContainer(new Slot(inventoryPlayer, i, 118 + i * 18, 142));
 		}
 	}
 
