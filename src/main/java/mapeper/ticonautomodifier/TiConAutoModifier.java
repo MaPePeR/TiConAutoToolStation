@@ -1,12 +1,12 @@
-package com.example.examplemod;
+package mapeper.ticonautomodifier;
 
 import net.minecraft.init.Blocks;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 
-@Mod(modid = ExampleMod.MODID, version = ExampleMod.VERSION)
-public class ExampleMod
+@Mod(modid = TiConAutoModifier.MODID, version = TiConAutoModifier.VERSION)
+public class TiConAutoModifier
 {
     public static final String MODID = "TiConAutoModifier";
     public static final String VERSION = "1.0";
