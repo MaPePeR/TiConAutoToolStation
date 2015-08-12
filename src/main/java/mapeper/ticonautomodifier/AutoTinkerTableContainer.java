@@ -15,7 +15,7 @@ public class AutoTinkerTableContainer extends Container
 		tileEntity = te;
 
 		addSlotToContainer(new Slot(tileEntity, MODSLOT, 56 + 111, 37 + 1));
-		addSlotToContainer(new Slot(tileEntity, TOOLSLOT, 225, 38));
+		addSlotToContainer(new ToolSlot(tileEntity, TOOLSLOT, 225, 38));
 
 		//commonly used vanilla code that adds the player's inventory
 		bindPlayerInventory(inventoryPlayer);
@@ -56,8 +56,13 @@ public class AutoTinkerTableContainer extends Container
 					return null;
 				}
 			}
+			else if (TinkerUtils.isModifyableTool(stack)) {
+				if (!this.mergeItemStack(stackInSlot, TOOLSLOT, TOOLSLOT + 1, false)) {
+					return null;
+				}
+			}
 			//places it into the tileEntity is possible since its in the player inventory
-			else if (!this.mergeItemStack(stackInSlot, 0, tileEntity.getSizeInventory(), false)) {
+			else if (!this.mergeItemStack(stackInSlot, MODSLOT, MODSLOT + 1, false)) {
 				return null;
 			}
 

@@ -2,7 +2,6 @@ package mapeper.ticonautomodifier;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
@@ -29,9 +28,9 @@ public class AutoTinkerTableGUI extends GuiContainer
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 		//draw text and stuff here
 		//the parameters for drawString are: string, x, y, color
-		this.mc.fontRenderer.drawString("Auto Tinker Table", 116, 6, 0x000000);
+		this.mc.fontRenderer.drawString("Auto Tinker Table", 116, 6, 4210752);
 		//draws "Inventory" or your regional equivalent
-		this.mc.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 118, ySize - 96 + 2, 0x000000);
+		this.mc.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 118, ySize - 96 + 2, 4210752);
 
 		TinkerUtils.drawToolStats(this.inventorySlots.getSlot(1).getStack(), 294, 0);
 	}
