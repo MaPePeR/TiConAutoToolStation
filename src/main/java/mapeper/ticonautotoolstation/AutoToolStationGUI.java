@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
 public class AutoToolStationGUI extends GuiContainer
 {
-	private static final ResourceLocation background = new ResourceLocation("tinker", "textures/gui/toolstation.png");
+	private static final ResourceLocation background = new ResourceLocation("autotoolstation", "textures/gui/toolstation.png");
 	private static final ResourceLocation icons = new ResourceLocation("tinker", "textures/gui/icons.png");
 	private static final ResourceLocation description = new ResourceLocation("tinker", "textures/gui/description.png");
 
