@@ -7,5 +7,3 @@ Resources under [CC.3](http://creativecommons.org/licenses/by/3.0/).
 ## TODO:
 
 * Block Texture
-* Localisation
-* Block Names

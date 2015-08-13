@@ -1,0 +1,4 @@
+tile.ats_autotoolstation.name=Auto Werkzeugstation
+ats.autotoolstation.description1=Platziere ein Tinkers Construct Werkzeug im rechten Slot um automatisch Items aus dem linken Slot hinzuzufügen.
+ats.autotoolstation.description2=Benutze keine Blöcke, oder es könnte steckenbleiben.
+ats.autotoolstation.thanksticon=Danke an Tinkers Construct für ihre Creative Commons 3 Resourcen

@@ -32,7 +32,7 @@ public class AutoToolStationGUI extends GuiContainer
 	protected void drawGuiContainerForegroundLayer(int param1, int param2) {
 		//draw text and stuff here
 		//the parameters for drawString are: string, x, y, color
-		this.mc.fontRenderer.drawString("Auto Tinker Table", 116, 6, 4210752);
+		this.mc.fontRenderer.drawString(StatCollector.translateToLocal("tile.ats_autotoolstation.name"), 116, 6, 4210752);
 		//draws "Inventory" or your regional equivalent
 		this.mc.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 118, ySize - 96 + 2, 4210752);
 
@@ -41,11 +41,11 @@ public class AutoToolStationGUI extends GuiContainer
 			TinkerUtils.drawToolStats(this.inventorySlots.getSlot(TOOLSLOT).getStack(), 294, 0);
 		} else {
 			//From https://github.com/SlimeKnights/TinkersConstruct/blob/a7405a3d10318bb5c486ec75fb62897a8149d1a6/src/main/java/tconstruct/tools/gui/ToolStationGui.java#L187-L191
-			this.drawCenteredString(fontRendererObj, "\u00A7nAuto Tool Station", 349, 8, 0xffffff);
-			fontRendererObj.drawSplitString("" +
-					"Put a Tinkers Construct Tool in the right slot to automatically add items from the left slot to it.\n\n" +
-					"Do not use Blocks, because it might get stuck.\n\n" +
-					"\u00a78Thanks to Tinkers Construct for the Creative Commons 3 Resources\u00a7r", 294, 24, 115, 0xffffff);
+			this.drawCenteredString(fontRendererObj, "\u00A7n" + StatCollector.translateToLocal("tile.ats_autotoolstation.name"), 349, 8, 0xffffff);
+			fontRendererObj.drawSplitString(
+					StatCollector.translateToLocal("ats.autotoolstation.description1") + "\n\n" +
+					StatCollector.translateToLocal("ats.autotoolstation.description2") + "\n\n" +
+					"\u00a78" + StatCollector.translateToLocal("ats.autotoolstation.thanksticon")+ "\u00a7r", 294, 24, 115, 0xffffff);
 		}
 	}
 

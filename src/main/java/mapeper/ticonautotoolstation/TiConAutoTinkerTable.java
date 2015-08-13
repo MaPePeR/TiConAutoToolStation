@@ -28,8 +28,8 @@ public class TiConAutoTinkerTable
     public void preInit(FMLPreInitializationEvent event) {
         if (!Loader.isModLoaded("TConstruct")) throw new RuntimeException("Need Tinkers Construct installed");
         autoToolStationBlockBlock = new AutoToolStationBlock();
-        GameRegistry.registerBlock(autoToolStationBlockBlock, ItemBlock.class, "autotinkertable");
-        GameRegistry.registerTileEntity(AutoToolStationTileEntity.class, "autotinkertableTile");
+        GameRegistry.registerBlock(autoToolStationBlockBlock, ItemBlock.class, "ats_autotoolstation");
+        GameRegistry.registerTileEntity(AutoToolStationTileEntity.class, "ats_autotoolstationTile");
     }
 
     @EventHandler

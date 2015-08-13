@@ -1,0 +1,4 @@
+tile.ats_autotoolstation.name=Auto Tool Station
+ats.autotoolstation.description1=Put a Tinkers Construct Tool in the right slot to automatically add items from the left slot to it.
+ats.autotoolstation.description2=Do not use Blocks, because it might get stuck.
+ats.autotoolstation.thanksticon=Thanks to Tinkers Construct for the Creative Commons 3 Resources

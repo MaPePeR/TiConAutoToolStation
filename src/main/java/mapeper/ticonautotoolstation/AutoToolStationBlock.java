@@ -13,7 +13,7 @@ public class AutoToolStationBlock extends Block implements ITileEntityProvider
 	protected AutoToolStationBlock()
 	{
 		super(Material.rock);
-		this.setBlockName("autotinkertable");
+		this.setBlockName("ats_autotoolstation");
 	}
 
 	@Override
