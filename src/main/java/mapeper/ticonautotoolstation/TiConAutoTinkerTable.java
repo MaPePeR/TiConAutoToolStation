@@ -1,4 +1,4 @@
-package mapeper.ticonautotinkertable;
+package mapeper.ticonautotoolstation;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;

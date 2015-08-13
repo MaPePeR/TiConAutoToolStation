@@ -1,4 +1,4 @@
-package mapeper.ticonautotinkertable;
+package mapeper.ticonautotoolstation;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
