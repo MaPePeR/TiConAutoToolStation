@@ -8,9 +8,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
-public class AutoTinkerTableBlock extends Block implements ITileEntityProvider
+public class AutoToolStationBlock extends Block implements ITileEntityProvider
 {
-	protected AutoTinkerTableBlock()
+	protected AutoToolStationBlock()
 	{
 		super(Material.rock);
 		this.setBlockName("autotinkertable");
@@ -19,7 +19,7 @@ public class AutoTinkerTableBlock extends Block implements ITileEntityProvider
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_)
 	{
-		return new AutoTinkerTableTileEntity();
+		return new AutoToolStationTileEntity();
 	}
 
 	@Override

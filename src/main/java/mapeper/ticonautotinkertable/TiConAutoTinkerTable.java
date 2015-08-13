@@ -22,21 +22,21 @@ public class TiConAutoTinkerTable
     @Mod.Instance(MODID)
     public static TiConAutoTinkerTable instance;
 
-    AutoTinkerTableBlock autoTinkerTableBlockBlock;
+    AutoToolStationBlock autoToolStationBlockBlock;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         if (!Loader.isModLoaded("TConstruct")) throw new RuntimeException("Need Tinkers Construct installed");
-        autoTinkerTableBlockBlock = new AutoTinkerTableBlock();
-        GameRegistry.registerBlock(autoTinkerTableBlockBlock, ItemBlock.class, "autotinkertable");
-        GameRegistry.registerTileEntity(AutoTinkerTableTileEntity.class, "autotinkertableTile");
+        autoToolStationBlockBlock = new AutoToolStationBlock();
+        GameRegistry.registerBlock(autoToolStationBlockBlock, ItemBlock.class, "autotinkertable");
+        GameRegistry.registerTileEntity(AutoToolStationTileEntity.class, "autotinkertableTile");
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-        GameRegistry.addShapedRecipe(new ItemStack(autoTinkerTableBlockBlock),
+        GameRegistry.addShapedRecipe(new ItemStack(autoToolStationBlockBlock),
                 "whw", "wtw", "wpw",
                 'w', new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE),
                 'h', new ItemStack(Blocks.hopper),

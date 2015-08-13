@@ -11,8 +11,8 @@ public class GuiHandler implements IGuiHandler
 	public Object getServerGuiElement(int id, EntityPlayer player, World world,
 									  int x, int y, int z) {
 		TileEntity tileEntity = world.getTileEntity(x, y, z);
-		if(tileEntity instanceof AutoTinkerTableTileEntity){
-			return new AutoTinkerTableContainer(player.inventory, (AutoTinkerTableTileEntity) tileEntity);
+		if(tileEntity instanceof AutoToolStationTileEntity){
+			return new AutoToolStationContainer(player.inventory, (AutoToolStationTileEntity) tileEntity);
 		}
 		return null;
 	}
@@ -21,8 +21,8 @@ public class GuiHandler implements IGuiHandler
 	public Object getClientGuiElement(int id, EntityPlayer player, World world,
 									  int x, int y, int z) {
 		TileEntity tileEntity = world.getTileEntity(x, y, z);
-		if(tileEntity instanceof AutoTinkerTableTileEntity){
-			return new AutoTinkerTableGUI(player.inventory, (AutoTinkerTableTileEntity) tileEntity);
+		if(tileEntity instanceof AutoToolStationTileEntity){
+			return new AutoToolStationGUI(player.inventory, (AutoToolStationTileEntity) tileEntity);
 		}
 		return null;
 

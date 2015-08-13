@@ -10,13 +10,13 @@ import net.minecraftforge.common.util.Constants;
 
 
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
-public class AutoTinkerTableTileEntity extends TileEntity implements ISidedInventory
+public class AutoToolStationTileEntity extends TileEntity implements ISidedInventory
 {
-	public static final int MODSLOT = AutoTinkerTableContainer.MODSLOT;
-	public static final int TOOLSLOT = AutoTinkerTableContainer.TOOLSLOT;
+	public static final int MODSLOT = AutoToolStationContainer.MODSLOT;
+	public static final int TOOLSLOT = AutoToolStationContainer.TOOLSLOT;
 	ItemStack[] inventory;
 
-	public AutoTinkerTableTileEntity() {
+	public AutoToolStationTileEntity() {
 		inventory = new ItemStack[2];
 	}
 

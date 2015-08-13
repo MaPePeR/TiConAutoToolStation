@@ -1,7 +1,7 @@
 [
 {
-  "modid": "TiConAutoTinkerTable",
-  "name": "Tinkers Construct Auto Tinker Table",
+  "modid": "TiConAutoToolStation",
+  "name": "Tinkers Construct Auto Tool Station",
   "description": "Adds a Block that instantly applies modifiers to Tinkers Construct Tools",
   "version": "${version}",
   "mcversion": "${mcversion}",

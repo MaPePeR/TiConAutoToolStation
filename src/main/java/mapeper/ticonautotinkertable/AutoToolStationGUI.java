@@ -7,15 +7,15 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
-public class AutoTinkerTableGUI extends GuiContainer
+public class AutoToolStationGUI extends GuiContainer
 {
 	private static final ResourceLocation background = new ResourceLocation("tinker", "textures/gui/toolstation.png");
 	private static final ResourceLocation icons = new ResourceLocation("tinker", "textures/gui/icons.png");
 	private static final ResourceLocation description = new ResourceLocation("tinker", "textures/gui/description.png");
 
-	public AutoTinkerTableGUI(InventoryPlayer inventoryPlayer,
-					AutoTinkerTableTileEntity tileEntity) {
-		super(new AutoTinkerTableContainer(inventoryPlayer, tileEntity));
+	public AutoToolStationGUI(InventoryPlayer inventoryPlayer,
+							  AutoToolStationTileEntity tileEntity) {
+		super(new AutoToolStationContainer(inventoryPlayer, tileEntity));
 	}
 
 	@Override
@@ -54,14 +54,14 @@ public class AutoTinkerTableGUI extends GuiContainer
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(icons);
 
-		if (!this.inventorySlots.getSlot(AutoTinkerTableContainer.TOOLSLOT).getHasStack()) {
+		if (!this.inventorySlots.getSlot(AutoToolStationContainer.TOOLSLOT).getHasStack()) {
 			this.drawTexturedModalRect(cornerX + (225 - 111), this.guiTop + (38 - 1), 18 * 0, 18 * 13, 18, 18);
 		}
 
 		// Draw the slots
 		int slotX = 56, slotY = 37;
 		this.drawTexturedModalRect(cornerX + slotX, this.guiTop + slotY, 144, 216, 18, 18);
-		if (!this.inventorySlots.getSlot(AutoTinkerTableContainer.MODSLOT).getHasStack()) {
+		if (!this.inventorySlots.getSlot(AutoToolStationContainer.MODSLOT).getHasStack()) {
 			this.drawTexturedModalRect(cornerX + slotX, this.guiTop + slotY, 18 * 2, 18 * 13, 18, 18);
 		}
 

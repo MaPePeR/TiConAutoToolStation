@@ -7,12 +7,12 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
-public class AutoTinkerTableContainer extends Container
+public class AutoToolStationContainer extends Container
 {
 	public static final int MODSLOT = 0;
 	public static final int TOOLSLOT = 1;
-	AutoTinkerTableTileEntity tileEntity;
-	public AutoTinkerTableContainer (InventoryPlayer inventoryPlayer, AutoTinkerTableTileEntity te){
+	AutoToolStationTileEntity tileEntity;
+	public AutoToolStationContainer(InventoryPlayer inventoryPlayer, AutoToolStationTileEntity te){
 		tileEntity = te;
 
 		addSlotToContainer(new Slot(tileEntity, MODSLOT, 56 + 111, 37 + 1));
