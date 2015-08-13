@@ -7,6 +7,6 @@ Resources under [CC.3](http://creativecommons.org/licenses/by/3.0/).
 ## TODO:
 
 * Block Texture
-* Creative Tab Page
+* ~~Creative Tab Page~~ Not needed - there is NEI
 * Custom GUI Texture to Remove the Rename-Textfield
 * Description in the Table GUI
