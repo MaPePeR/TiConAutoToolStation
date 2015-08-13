@@ -1,7 +1,6 @@
-package mapeper.ticonautomodifier;
+package mapeper.ticonautotinkertable;
 
 import net.minecraft.item.ItemStack;
-import scala.Int;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

@@ -1,4 +1,4 @@
-package mapeper.ticonautomodifier;
+package mapeper.ticonautotinkertable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;

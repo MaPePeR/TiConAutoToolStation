@@ -1,4 +1,4 @@
-package mapeper.ticonautomodifier;
+package mapeper.ticonautotinkertable;
 
 
 import net.minecraft.inventory.IInventory;

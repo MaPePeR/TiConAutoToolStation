@@ -1,4 +1,4 @@
-package mapeper.ticonautomodifier;
+package mapeper.ticonautotinkertable;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.entity.player.EntityPlayer;

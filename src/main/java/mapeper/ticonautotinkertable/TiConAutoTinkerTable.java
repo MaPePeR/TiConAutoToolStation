@@ -1,4 +1,4 @@
-package mapeper.ticonautomodifier;
+package mapeper.ticonautotinkertable;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.network.NetworkRegistry;

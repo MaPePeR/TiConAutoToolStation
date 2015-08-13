@@ -1,4 +1,4 @@
-package mapeper.ticonautomodifier;
+package mapeper.ticonautotinkertable;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
