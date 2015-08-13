@@ -27,7 +27,7 @@ public class AutoToolStationBlock extends Block implements ITileEntityProvider
 	{
 		if (!world.isRemote)
 		{
-			player.openGui(TiConAutoTinkerTable.instance, 0, world, x, y, z);
+			player.openGui(TiConAutoToolStation.instance, 0, world, x, y, z);
 		}
 
 		return true;

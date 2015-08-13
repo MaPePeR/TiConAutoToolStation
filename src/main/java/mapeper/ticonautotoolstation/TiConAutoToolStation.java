@@ -12,15 +12,15 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = TiConAutoTinkerTable.MODID, version = TiConAutoTinkerTable.VERSION)
-public class TiConAutoTinkerTable
+@Mod(modid = TiConAutoToolStation.MODID, version = TiConAutoToolStation.VERSION)
+public class TiConAutoToolStation
 {
 
-    public static final String MODID = "TiConAutoTinkerTable";
+    public static final String MODID = "TiConAutoToolStation";
     public static final String VERSION = "1.0";
 
     @Mod.Instance(MODID)
-    public static TiConAutoTinkerTable instance;
+    public static TiConAutoToolStation instance;
 
     AutoToolStationBlock autoToolStationBlockBlock;
 
