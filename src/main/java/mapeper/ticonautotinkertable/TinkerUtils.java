@@ -1,5 +1,6 @@
 package mapeper.ticonautotinkertable;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 import java.lang.reflect.Field;
@@ -14,6 +15,7 @@ public class TinkerUtils
 	static Class iModifyable;
 	//drawToolStats (ItemStack stack, int x, int y)
 	static Method drawToolStatsMethod;
+	static Field toolStationField;
 	static {
 		try
 		{
@@ -26,6 +28,9 @@ public class TinkerUtils
 
 			clazz = Class.forName("tconstruct.tools.gui.ToolStationGuiHelper");
 			drawToolStatsMethod = clazz.getMethod("drawToolStats", ItemStack.class, int.class, int.class);
+
+			clazz = Class.forName("tconstruct.tools.TinkerTools");
+			toolStationField = clazz.getField("toolStationWood");
 		} catch (ClassNotFoundException e)
 		{
 			e.printStackTrace();
@@ -82,5 +87,22 @@ public class TinkerUtils
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public static Block getToolStation() {
+		if (toolStationField != null) {
+			Object o = null;
+			try
+			{
+				o = toolStationField.get(null);
+			} catch (IllegalAccessException e)
+			{
+				new RuntimeException("Could not get toolStationWood from tconstruct.tools.TinkerTools", e);
+			}
+			if (o instanceof Block) {
+				return (Block) o;
+			}
+		}
+		throw new RuntimeException("Could not get toolStationWood from tconstruct.tools.TinkerTools");
 	}
 }

@@ -8,6 +8,5 @@ Resources under [CC.3](http://creativecommons.org/licenses/by/3.0/).
 
 * Block Texture
 * Creative Tab Page
-* Crafting Recipe (Hopper, Tool Station, Piston in the center and Wool on the Sides, to show that it does not make a sound?)
 * Custom GUI Texture to Remove the Rename-Textfield
 * Description in the Table GUI
