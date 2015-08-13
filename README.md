@@ -8,4 +8,3 @@ Resources under [CC.3](http://creativecommons.org/licenses/by/3.0/).
 
 * Block Texture
 * ~~Creative Tab Page~~ Not needed - there is NEI
-* Description in the Table GUI
