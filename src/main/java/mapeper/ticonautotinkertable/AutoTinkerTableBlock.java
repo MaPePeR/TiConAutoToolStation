@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+//Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
 public class AutoTinkerTableBlock extends Block implements ITileEntityProvider
 {
 	protected AutoTinkerTableBlock()

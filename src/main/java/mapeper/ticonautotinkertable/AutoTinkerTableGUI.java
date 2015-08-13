@@ -6,6 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
+//Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
 public class AutoTinkerTableGUI extends GuiContainer
 {
 	private static final ResourceLocation background = new ResourceLocation("tinker", "textures/gui/toolstation.png");
@@ -35,6 +36,8 @@ public class AutoTinkerTableGUI extends GuiContainer
 		TinkerUtils.drawToolStats(this.inventorySlots.getSlot(1).getStack(), 294, 0);
 	}
 
+	//Code based on https://github.com/SlimeKnights/TinkersConstruct/blob/a7405a3d10318bb5c486ec75fb62897a8149d1a6/src/main/java/tconstruct/tools/gui/ToolStationGui.java#L201-L231
+	//Modified to only use 2 Slots and show the icons at different places
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2,
 												   int par3)

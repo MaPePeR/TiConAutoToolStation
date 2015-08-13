@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 
 
-//http://www.minecraftforge.net/wiki/Containers_and_GUIs
+//Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
 public class AutoTinkerTableTileEntity extends TileEntity implements ISidedInventory
 {
 	public static final int MODSLOT = AutoTinkerTableContainer.MODSLOT;

@@ -6,6 +6,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+//Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
 public class AutoTinkerTableContainer extends Container
 {
 	public static final int MODSLOT = 0;
