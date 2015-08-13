@@ -7,9 +7,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class AutoTinkerTable extends Block implements ITileEntityProvider
+public class AutoTinkerTableBlock extends Block implements ITileEntityProvider
 {
-	protected AutoTinkerTable()
+	protected AutoTinkerTableBlock()
 	{
 		super(Material.rock);
 		this.setBlockName("autotinkertable");
@@ -26,7 +26,7 @@ public class AutoTinkerTable extends Block implements ITileEntityProvider
 	{
 		if (!world.isRemote)
 		{
-			player.openGui(TiConAutoModifier.instance, 0, world, x, y, z);
+			player.openGui(TiConAutoTinkerTable.instance, 0, world, x, y, z);
 		}
 
 		return true;
