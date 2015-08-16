@@ -21,7 +21,7 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 		inventory = new ItemStack[2];
 	}
 
-	public static final int[] accessibleSlots = new int[]{0};
+	public static final int[] accessibleSlots = new int[]{0, 1};
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side)
@@ -32,13 +32,13 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	@Override
 	public boolean canInsertItem(int slot, ItemStack stack, int side)
 	{
-		return slot == 0;
+		return slot == MODSLOT;
 	}
 
 	@Override
 	public boolean canExtractItem(int slot, ItemStack stack, int side)
 	{
-		return false;
+		return slot == TOOLSLOT;
 	}
 
 	@Override
