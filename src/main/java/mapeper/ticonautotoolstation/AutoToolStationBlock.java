@@ -17,6 +17,7 @@ public class AutoToolStationBlock extends Block implements ITileEntityProvider
 	protected AutoToolStationBlock()
 	{
 		super(Material.rock);
+		this.setHardness(1.0F);
 		this.setBlockName("ats_autotoolstation");
 	}
 
