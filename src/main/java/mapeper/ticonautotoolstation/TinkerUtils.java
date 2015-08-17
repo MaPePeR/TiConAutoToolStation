@@ -1,8 +1,9 @@
 package mapeper.ticonautotoolstation;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
-import org.apache.logging.log4j.Level;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -28,9 +29,11 @@ public class TinkerUtils
 
 			iModifyable = Class.forName("tconstruct.library.modifier.IModifyable");
 			getBaseTagNameMethod = iModifyable.getMethod("getBaseTagName");
-
-			clazz = Class.forName("tconstruct.tools.gui.ToolStationGuiHelper");
-			drawToolStatsMethod = clazz.getMethod("drawToolStats", ItemStack.class, int.class, int.class);
+			if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+			{
+				clazz = Class.forName("tconstruct.tools.gui.ToolStationGuiHelper");
+				drawToolStatsMethod = clazz.getMethod("drawToolStats", ItemStack.class, int.class, int.class);
+			}
 
 			clazz = Class.forName("tconstruct.tools.TinkerTools");
 			toolStationField = clazz.getField("toolStationWood");
