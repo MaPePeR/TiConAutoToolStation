@@ -9,20 +9,20 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
-public class AutoToolStationContainer extends Container
-{
+public class AutoToolStationContainer extends Container {
 
 	AutoToolStationTileEntity tileEntity;
-	public AutoToolStationContainer(InventoryPlayer inventoryPlayer, AutoToolStationTileEntity te){
+
+	public AutoToolStationContainer(InventoryPlayer inventoryPlayer, AutoToolStationTileEntity te) {
 		tileEntity = te;
 
 		addSlotToContainer(new Slot(tileEntity, C.MODSLOT, 56 + 111 - 19, 37 + 1));
-		addSlotToContainer(new ToolSlot(tileEntity, C.TOOLSLOT, 56+111, 38));
+		addSlotToContainer(new ToolSlot(tileEntity, C.TOOLSLOT, 56 + 111, 38));
 		addSlotToContainer(new ToolOutSlot(tileEntity, C.TOOLOUTSLOT, 225, 38));
 
 		//commonly used vanilla code that adds the player's inventory
 		bindPlayerInventory(inventoryPlayer);
-}
+	}
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
@@ -55,12 +55,11 @@ public class AutoToolStationContainer extends Container
 
 			//merges the item into player inventory since its in the tileEntity
 			if (slot < tileEntity.getSizeInventory()) {
-				if (!this.mergeItemStack(stackInSlot, tileEntity.getSizeInventory(), 36+tileEntity.getSizeInventory(), true)) {
+				if (!this.mergeItemStack(stackInSlot, tileEntity.getSizeInventory(), 36 + tileEntity.getSizeInventory(), true)) {
 					return null;
 				}
-			}
-			else if (TinkerUtils.isModifyableTool(stack)) {
-				if (((Slot)this.inventorySlots.get(C.TOOLOUTSLOT)).getHasStack() || !this.mergeItemStack(stackInSlot, C.TOOLSLOT, C.TOOLSLOT + 1, false)) {
+			} else if (TinkerUtils.isModifyableTool(stack)) {
+				if (((Slot) this.inventorySlots.get(C.TOOLOUTSLOT)).getHasStack() || !this.mergeItemStack(stackInSlot, C.TOOLSLOT, C.TOOLSLOT + 1, false)) {
 					return null;
 				}
 			}

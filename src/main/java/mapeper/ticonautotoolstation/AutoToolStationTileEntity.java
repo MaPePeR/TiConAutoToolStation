@@ -15,8 +15,7 @@ import org.apache.logging.log4j.Level;
 
 
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
-public class AutoToolStationTileEntity extends TileEntity implements ISidedInventory
-{
+public class AutoToolStationTileEntity extends TileEntity implements ISidedInventory {
 	boolean haveNewToolInSlot;
 	int mode;
 	ItemStack[] inventory;
@@ -28,14 +27,12 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	public static final int[] accessibleSlots = new int[]{C.MODSLOT, C.TOOLSLOT};
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int side)
-	{
+	public int[] getAccessibleSlotsFromSide(int side) {
 		return accessibleSlots;
 	}
 
 	@Override
-	public boolean canInsertItem(int slot, ItemStack stack, int side)
-	{
+	public boolean canInsertItem(int slot, ItemStack stack, int side) {
 		if (TinkerUtils.isModifyableTool(stack)) {
 			return slot == C.TOOLSLOT && (inventory[C.TOOLOUTSLOT] == null || inventory[C.TOOLOUTSLOT].stackSize == 0);
 		} else {
@@ -44,26 +41,22 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	}
 
 	@Override
-	public boolean canExtractItem(int slot, ItemStack stack, int side)
-	{
+	public boolean canExtractItem(int slot, ItemStack stack, int side) {
 		return slot == C.TOOLOUTSLOT;
 	}
 
 	@Override
-	public int getSizeInventory()
-	{
+	public int getSizeInventory() {
 		return inventory.length;
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int slot)
-	{
+	public ItemStack getStackInSlot(int slot) {
 		return inventory[slot];
 	}
 
 	@Override
-	public ItemStack decrStackSize(int slot, int amt)
-	{
+	public ItemStack decrStackSize(int slot, int amt) {
 		ItemStack stack = getStackInSlot(slot);
 		if (stack != null) {
 			if (stack.stackSize <= amt) {
@@ -79,8 +72,7 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int slot)
-	{
+	public ItemStack getStackInSlotOnClosing(int slot) {
 		ItemStack stack = getStackInSlot(slot);
 		if (stack != null) {
 			setInventorySlotContents(slot, null);
@@ -89,8 +81,7 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	}
 
 	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack)
-	{
+	public void setInventorySlotContents(int slot, ItemStack stack) {
 		inventory[slot] = stack;
 		if (!worldObj.isRemote) {
 			if (stack != null && slot == C.TOOLSLOT) {
@@ -103,46 +94,40 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	}
 
 	@Override
-	public String getInventoryName()
-	{
+	public String getInventoryName() {
 		return "tile.ats_autotoolstation.name";
 	}
 
 	@Override
-	public boolean hasCustomInventoryName()
-	{
+	public boolean hasCustomInventoryName() {
 		return false;
 	}
 
 	@Override
-	public int getInventoryStackLimit()
-	{
+	public int getInventoryStackLimit() {
 		return 64;
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer player)
-	{
+	public boolean isUseableByPlayer(EntityPlayer player) {
 		return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this &&
 				player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
 	}
 
 	@Override
-	public void openInventory()
-	{
+	public void openInventory() {
 
 	}
 
 	@Override
-	public void closeInventory()
-	{
+	public void closeInventory() {
 
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack stack)
-	{
-		if (slot == C.TOOLSLOT) return TinkerUtils.isModifyableTool(stack) && (inventory[C.TOOLOUTSLOT] == null || inventory[C.TOOLOUTSLOT].stackSize == 0);
+	public boolean isItemValidForSlot(int slot, ItemStack stack) {
+		if (slot == C.TOOLSLOT)
+			return TinkerUtils.isModifyableTool(stack) && (inventory[C.TOOLOUTSLOT] == null || inventory[C.TOOLOUTSLOT].stackSize == 0);
 		return true;
 	}
 
@@ -154,25 +139,21 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 				modifierCopy.stackSize = 1;
 
 				ItemStack modifyResult = TinkerUtils.modifyItem(inventory[C.TOOLSLOT], new ItemStack[]{modifierCopy.copy()});
-				if (!haveNewToolInSlot)
-				{
+				if (!haveNewToolInSlot) {
 					modifyResult = getMode().shouldMoveToOutput(inventory[C.TOOLSLOT], modifyResult);
 				} else {
 					haveNewToolInSlot = false;
 				}
 				if (modifyResult == null) {
 					//Could not apply more modifiers
-					if (inventory[C.TOOLOUTSLOT] == null || inventory[C.TOOLOUTSLOT].stackSize == 0)
-					{
+					if (inventory[C.TOOLOUTSLOT] == null || inventory[C.TOOLOUTSLOT].stackSize == 0) {
 						inventory[C.TOOLOUTSLOT] = inventory[C.TOOLSLOT];
 						inventory[C.TOOLSLOT] = null;
 						this.markDirty();
 					} else {
 						TiConAutoToolStation.LOGGER.log(Level.ERROR, "Auto Tool Station output slot was not empty, but we want to move a tool there!");
 					}
-				}
-				else
-				{
+				} else {
 					decrStackSize(C.MODSLOT, 1);
 					inventory[C.TOOLSLOT] = modifyResult;
 					this.markDirty();
@@ -213,8 +194,7 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	}
 
 	@Override
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
-	{
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
 		NBTTagCompound tag = pkt.func_148857_g();
 		this.mode = tag.getInteger("Mode");
 	}
@@ -238,8 +218,7 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 		tagCompound.setBoolean("newTool", haveNewToolInSlot);
 	}
 
-	public IATSMode getMode()
-	{
+	public IATSMode getMode() {
 		return IATSMode.modes.get(this.mode);
 	}
 }

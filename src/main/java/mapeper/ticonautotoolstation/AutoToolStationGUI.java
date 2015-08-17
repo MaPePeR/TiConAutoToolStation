@@ -7,15 +7,14 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
-public class AutoToolStationGUI extends GuiContainer
-{
+public class AutoToolStationGUI extends GuiContainer {
 	private static final ResourceLocation background = new ResourceLocation("autotoolstation", "textures/gui/toolstation.png");
 	private static final ResourceLocation icons = new ResourceLocation("tinker", "textures/gui/icons.png");
 	private static final ResourceLocation description = new ResourceLocation("tinker", "textures/gui/description.png");
 
 	AutoToolStationTileEntity tileEntity;
-	public AutoToolStationGUI(InventoryPlayer inventoryPlayer,
-							  AutoToolStationTileEntity tileEntity) {
+
+	public AutoToolStationGUI(InventoryPlayer inventoryPlayer, AutoToolStationTileEntity tileEntity) {
 		super(new AutoToolStationContainer(inventoryPlayer, tileEntity));
 		this.tileEntity = tileEntity;
 	}
@@ -38,8 +37,7 @@ public class AutoToolStationGUI extends GuiContainer
 		//draws "Inventory" or your regional equivalent
 		this.mc.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 118, ySize - 96 + 2, 4210752);
 
-		if (this.inventorySlots.getSlot(C.TOOLSLOT).getHasStack())
-		{
+		if (this.inventorySlots.getSlot(C.TOOLSLOT).getHasStack()) {
 			TinkerUtils.drawToolStats(this.inventorySlots.getSlot(C.TOOLSLOT).getStack(), 294, 0);
 		} else if (this.inventorySlots.getSlot(C.TOOLOUTSLOT).getHasStack()) {
 			TinkerUtils.drawToolStats(this.inventorySlots.getSlot(C.TOOLOUTSLOT).getStack(), 294, 0);
@@ -50,16 +48,15 @@ public class AutoToolStationGUI extends GuiContainer
 					StatCollector.translateToLocal("ats.autotoolstation.description1") + "\n\n" +
 					StatCollector.translateToLocal("ats.autotoolstation.description2") + "\n\n" +
 					StatCollector.translateToLocal("ats.autotoolstation.description3") + "\n\n" +
-					"\u00a78" + StatCollector.translateToLocal("ats.autotoolstation.thanksticon")+ "\u00a7r", 294, 24, 115, 0xffffff);
+					"\u00a78" + StatCollector.translateToLocal("ats.autotoolstation.thanksticon") + "\u00a7r", 294, 24, 115, 0xffffff
+			);
 		}
 	}
 
 	//Code based on https://github.com/SlimeKnights/TinkersConstruct/blob/a7405a3d10318bb5c486ec75fb62897a8149d1a6/src/main/java/tconstruct/tools/gui/ToolStationGui.java#L201-L231
 	//Modified to only use 2 Slots and show the icons at different places
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float par1, int par2,
-												   int par3)
-	{
+	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
 		//Slot1: 56 37
 		//Slot2: 38 28
 
