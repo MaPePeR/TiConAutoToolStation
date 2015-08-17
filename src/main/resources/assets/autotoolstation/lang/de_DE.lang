@@ -1,4 +1,10 @@
 tile.ats_autotoolstation.name=Auto Werkzeugstation
-ats.autotoolstation.description1=Platziere ein Tinkers Construct Werkzeug im rechten Slot um automatisch Items aus dem linken Slot hinzuzufügen.
-ats.autotoolstation.description2=Benutze keine Blöcke, oder es könnte steckenbleiben.
+ats.autotoolstation.description1=Items aus dem linken Slot werden dem Tinkers Construct Tool im mittleren Slot hinzugefügt
+ats.autotoolstation.description2=Shift Rechts Klick um den Modus zu ändern.
+ats.autotoolstation.description3=Blöcke könnten stecken bleiben.
 ats.autotoolstation.thanksticon=Danke an Tinkers Construct für ihre Creative Commons 3 Resourcen
+
+ats.autotoolstation.currentMode=Modus:
+ats.autotoolstation.modechange=Modus geändert zu: %s
+ats.autotoolstation.mode.applyUntilDone=Hinzufügen bis fertig.
+ats.autotoolstation.mode.fillOne=Nur ein Modifikator

@@ -49,6 +49,7 @@ public class AutoToolStationGUI extends GuiContainer
 			fontRendererObj.drawSplitString(
 					StatCollector.translateToLocal("ats.autotoolstation.description1") + "\n\n" +
 					StatCollector.translateToLocal("ats.autotoolstation.description2") + "\n\n" +
+					StatCollector.translateToLocal("ats.autotoolstation.description3") + "\n\n" +
 					"\u00a78" + StatCollector.translateToLocal("ats.autotoolstation.thanksticon")+ "\u00a7r", 294, 24, 115, 0xffffff);
 		}
 	}
