@@ -17,7 +17,7 @@ buildscript {
 
 apply plugin: 'forge'
 
-ext.artifact_version = "1.0"
+ext.artifact_version = "1.0.1"
 version = "1.7.10-${artifact_version}"
 group= "mapeper.ticonautotoolstation" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "TiConAutoToolStation"
@@ -25,6 +25,9 @@ archivesBaseName = "TiConAutoToolStation"
 minecraft {
     version = "1.7.10-10.13.4.1448-1.7.10"
     runDir = "eclipse"
+
+    replace "@VERSION@", artifact_version
+    replaceIn "TiConAutoToolStation.java"
 }
 
 dependencies {
