@@ -13,15 +13,13 @@ import net.minecraftforge.common.util.Constants;
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
 public class AutoToolStationTileEntity extends TileEntity implements ISidedInventory
 {
-	public static final int MODSLOT = AutoToolStationContainer.MODSLOT;
-	public static final int TOOLSLOT = AutoToolStationContainer.TOOLSLOT;
 	ItemStack[] inventory;
 
 	public AutoToolStationTileEntity() {
 		inventory = new ItemStack[2];
 	}
 
-	public static final int[] accessibleSlots = new int[]{0, 1};
+	public static final int[] accessibleSlots = new int[]{C.MODSLOT, C.TOOLSLOT};
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side)
@@ -32,13 +30,13 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	@Override
 	public boolean canInsertItem(int slot, ItemStack stack, int side)
 	{
-		return slot == MODSLOT;
+		return slot == C.MODSLOT;
 	}
 
 	@Override
 	public boolean canExtractItem(int slot, ItemStack stack, int side)
 	{
-		return slot == TOOLSLOT;
+		return slot == C.TOOLSLOT;
 	}
 
 	@Override
@@ -129,22 +127,22 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack)
 	{
-		if (slot == TOOLSLOT) return TinkerUtils.isModifyableTool(stack);
+		if (slot == C.TOOLSLOT) return TinkerUtils.isModifyableTool(stack);
 		return true;
 	}
 
 	@Override
 	public void updateEntity() {
 		if (!this.worldObj.isRemote) {
-			if (inventory[MODSLOT] != null && inventory[MODSLOT].stackSize >= 1 && inventory[TOOLSLOT] != null) {
-				ItemStack modifierCopy = inventory[MODSLOT].copy();
+			if (inventory[C.MODSLOT] != null && inventory[C.MODSLOT].stackSize >= 1 && inventory[C.TOOLSLOT] != null) {
+				ItemStack modifierCopy = inventory[C.MODSLOT].copy();
 				modifierCopy.stackSize = 1;
 
-				ItemStack modifyResult = TinkerUtils.modifyItem(inventory[TOOLSLOT], new ItemStack[]{modifierCopy.copy()});
+				ItemStack modifyResult = TinkerUtils.modifyItem(inventory[C.TOOLSLOT], new ItemStack[]{modifierCopy.copy()});
 				if (modifyResult != null)
 				{
-					decrStackSize(MODSLOT, 1);
-					inventory[TOOLSLOT] = modifyResult;
+					decrStackSize(C.MODSLOT, 1);
+					inventory[C.TOOLSLOT] = modifyResult;
 					this.markDirty();
 				}
 			}

@@ -9,14 +9,13 @@ import net.minecraft.item.ItemStack;
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
 public class AutoToolStationContainer extends Container
 {
-	public static final int MODSLOT = 0;
-	public static final int TOOLSLOT = 1;
+
 	AutoToolStationTileEntity tileEntity;
 	public AutoToolStationContainer(InventoryPlayer inventoryPlayer, AutoToolStationTileEntity te){
 		tileEntity = te;
 
-		addSlotToContainer(new Slot(tileEntity, MODSLOT, 56 + 111, 37 + 1));
-		addSlotToContainer(new ToolSlot(tileEntity, TOOLSLOT, 225, 38));
+		addSlotToContainer(new Slot(tileEntity, C.MODSLOT, 56 + 111, 37 + 1));
+		addSlotToContainer(new ToolSlot(tileEntity, C.TOOLSLOT, 225, 38));
 
 		//commonly used vanilla code that adds the player's inventory
 		bindPlayerInventory(inventoryPlayer);
@@ -58,12 +57,12 @@ public class AutoToolStationContainer extends Container
 				}
 			}
 			else if (TinkerUtils.isModifyableTool(stack)) {
-				if (!this.mergeItemStack(stackInSlot, TOOLSLOT, TOOLSLOT + 1, false)) {
+				if (!this.mergeItemStack(stackInSlot, C.TOOLSLOT, C.TOOLSLOT + 1, false)) {
 					return null;
 				}
 			}
 			//places it into the tileEntity is possible since its in the player inventory
-			else if (!this.mergeItemStack(stackInSlot, MODSLOT, MODSLOT + 1, false)) {
+			else if (!this.mergeItemStack(stackInSlot, C.MODSLOT, C.MODSLOT + 1, false)) {
 				return null;
 			}
 

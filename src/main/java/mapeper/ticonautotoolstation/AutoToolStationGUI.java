@@ -9,9 +9,6 @@ import org.lwjgl.opengl.GL11;
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
 public class AutoToolStationGUI extends GuiContainer
 {
-	public static final int MODSLOT = AutoToolStationContainer.MODSLOT;
-	public static final int TOOLSLOT = AutoToolStationContainer.TOOLSLOT;
-
 	private static final ResourceLocation background = new ResourceLocation("autotoolstation", "textures/gui/toolstation.png");
 	private static final ResourceLocation icons = new ResourceLocation("tinker", "textures/gui/icons.png");
 	private static final ResourceLocation description = new ResourceLocation("tinker", "textures/gui/description.png");
@@ -36,9 +33,9 @@ public class AutoToolStationGUI extends GuiContainer
 		//draws "Inventory" or your regional equivalent
 		this.mc.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 118, ySize - 96 + 2, 4210752);
 
-		if (this.inventorySlots.getSlot(TOOLSLOT).getHasStack())
+		if (this.inventorySlots.getSlot(C.TOOLSLOT).getHasStack())
 		{
-			TinkerUtils.drawToolStats(this.inventorySlots.getSlot(TOOLSLOT).getStack(), 294, 0);
+			TinkerUtils.drawToolStats(this.inventorySlots.getSlot(C.TOOLSLOT).getStack(), 294, 0);
 		} else {
 			//From https://github.com/SlimeKnights/TinkersConstruct/blob/a7405a3d10318bb5c486ec75fb62897a8149d1a6/src/main/java/tconstruct/tools/gui/ToolStationGui.java#L187-L191
 			this.drawCenteredString(fontRendererObj, "\u00A7n" + StatCollector.translateToLocal("tile.ats_autotoolstation.name"), 349, 8, 0xffffff);
@@ -67,14 +64,14 @@ public class AutoToolStationGUI extends GuiContainer
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(icons);
 
-		if (!this.inventorySlots.getSlot(TOOLSLOT).getHasStack()) {
+		if (!this.inventorySlots.getSlot(C.TOOLSLOT).getHasStack()) {
 			this.drawTexturedModalRect(cornerX + (225 - 111), this.guiTop + (38 - 1), 18 * 0, 18 * 13, 18, 18);
 		}
 
 		// Draw the slots
 		int slotX = 56, slotY = 37;
 		this.drawTexturedModalRect(cornerX + slotX, this.guiTop + slotY, 144, 216, 18, 18);
-		if (!this.inventorySlots.getSlot(MODSLOT).getHasStack()) {
+		if (!this.inventorySlots.getSlot(C.MODSLOT).getHasStack()) {
 			this.drawTexturedModalRect(cornerX + slotX, this.guiTop + slotY, 18 * 2, 18 * 13, 18, 18);
 		}
 
