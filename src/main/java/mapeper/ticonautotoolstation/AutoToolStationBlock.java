@@ -46,13 +46,8 @@ public class AutoToolStationBlock extends Block implements ITileEntityProvider
 				atsTile.mode = (atsTile.mode + 1) % IATSMode.modes.size();
 				if (world.isRemote)
 				{
-					player.addChatComponentMessage(new ChatComponentText("Client:"));
-					player.addChatComponentMessage(new ChatComponentTranslation("ats.autotoolstation.modechange", atsTile.getMode().getName()));
-				} else {
-					player.addChatComponentMessage(new ChatComponentText("Server:"));
 					player.addChatComponentMessage(new ChatComponentTranslation("ats.autotoolstation.modechange", atsTile.getMode().getName()));
 				}
-				world.notifyBlockChange(tile.xCoord, tile.yCoord, tile.zCoord, this);
 			}
 		}
 		else if (!world.isRemote)

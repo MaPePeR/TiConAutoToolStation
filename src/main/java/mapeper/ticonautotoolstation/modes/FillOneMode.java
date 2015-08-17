@@ -1,12 +1,8 @@
 package mapeper.ticonautotoolstation.modes;
 
-import mapeper.ticonautotoolstation.TiConAutoToolStation;
 import mapeper.ticonautotoolstation.TinkerUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
-import org.apache.logging.log4j.Level;
-
-import java.lang.reflect.Method;
 
 public class FillOneMode implements IATSMode
 {
