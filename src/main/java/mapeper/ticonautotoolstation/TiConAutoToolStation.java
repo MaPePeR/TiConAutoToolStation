@@ -11,11 +11,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = TiConAutoToolStation.MODID, version = TiConAutoToolStation.VERSION)
 public class TiConAutoToolStation
 {
-
+    public static final Logger LOGGER = LogManager.getLogger();
     public static final String MODID = "TiConAutoToolStation";
     public static final String VERSION = "@VERSION@";
 
