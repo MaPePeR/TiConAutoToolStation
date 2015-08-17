@@ -41,6 +41,8 @@ public class AutoToolStationGUI extends GuiContainer
 		if (this.inventorySlots.getSlot(C.TOOLSLOT).getHasStack())
 		{
 			TinkerUtils.drawToolStats(this.inventorySlots.getSlot(C.TOOLSLOT).getStack(), 294, 0);
+		} else if (this.inventorySlots.getSlot(C.TOOLOUTSLOT).getHasStack()) {
+			TinkerUtils.drawToolStats(this.inventorySlots.getSlot(C.TOOLOUTSLOT).getStack(), 294, 0);
 		} else {
 			//From https://github.com/SlimeKnights/TinkersConstruct/blob/a7405a3d10318bb5c486ec75fb62897a8149d1a6/src/main/java/tconstruct/tools/gui/ToolStationGui.java#L187-L191
 			this.drawCenteredString(fontRendererObj, "\u00A7n" + StatCollector.translateToLocal("tile.ats_autotoolstation.name"), 349, 8, 0xffffff);
