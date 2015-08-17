@@ -1,6 +1,7 @@
-package mapeper.ticonautotoolstation;
+package mapeper.ticonautotoolstation.slot;
 
 
+import mapeper.ticonautotoolstation.TinkerUtils;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;

@@ -1,5 +1,6 @@
 package mapeper.ticonautotoolstation;
 
+import mapeper.ticonautotoolstation.slot.ToolSlot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
