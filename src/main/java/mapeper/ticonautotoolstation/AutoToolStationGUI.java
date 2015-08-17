@@ -13,9 +13,11 @@ public class AutoToolStationGUI extends GuiContainer
 	private static final ResourceLocation icons = new ResourceLocation("tinker", "textures/gui/icons.png");
 	private static final ResourceLocation description = new ResourceLocation("tinker", "textures/gui/description.png");
 
+	AutoToolStationTileEntity tileEntity;
 	public AutoToolStationGUI(InventoryPlayer inventoryPlayer,
 							  AutoToolStationTileEntity tileEntity) {
 		super(new AutoToolStationContainer(inventoryPlayer, tileEntity));
+		this.tileEntity = tileEntity;
 	}
 
 	@Override
@@ -30,6 +32,9 @@ public class AutoToolStationGUI extends GuiContainer
 		//draw text and stuff here
 		//the parameters for drawString are: string, x, y, color
 		this.mc.fontRenderer.drawString(StatCollector.translateToLocal("tile.ats_autotoolstation.name"), 116, 6, 4210752);
+
+		this.mc.fontRenderer.drawString("\u00A7l" + StatCollector.translateToLocal("ats.autotoolstation.currentMode") + "\u00A7r " + tileEntity.getMode().getName(), 116, 6 + 12, 0x00AAAA);
+
 		//draws "Inventory" or your regional equivalent
 		this.mc.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 118, ySize - 96 + 2, 4210752);
 

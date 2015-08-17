@@ -1,5 +1,6 @@
 package mapeper.ticonautotoolstation;
 
+import mapeper.ticonautotoolstation.modes.IATSMode;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -14,6 +15,7 @@ import org.apache.logging.log4j.Level;
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
 public class AutoToolStationTileEntity extends TileEntity implements ISidedInventory
 {
+	int mode;
 	ItemStack[] inventory;
 
 	public AutoToolStationTileEntity() {
@@ -144,6 +146,7 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 				modifierCopy.stackSize = 1;
 
 				ItemStack modifyResult = TinkerUtils.modifyItem(inventory[C.TOOLSLOT], new ItemStack[]{modifierCopy.copy()});
+				modifyResult = getMode().shouldMoveToOutput(inventory[C.TOOLSLOT], modifyResult);
 				if (modifyResult == null) {
 					//Could not apply more modifiers
 					if (inventory[C.TOOLOUTSLOT] == null || inventory[C.TOOLOUTSLOT].stackSize == 0)
@@ -177,6 +180,11 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 				inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
 			}
 		}
+		if (tagCompound.hasKey("Mode")) {
+			mode = tagCompound.getInteger("Mode");
+		} else {
+			mode = 0;
+		}
 	}
 
 	@Override
@@ -194,5 +202,11 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 			}
 		}
 		tagCompound.setTag("Inventory", itemList);
+		tagCompound.setInteger("Mode", mode);
+	}
+
+	public IATSMode getMode()
+	{
+		return IATSMode.modes.get(this.mode);
 	}
 }

@@ -2,6 +2,7 @@ package mapeper.ticonautotoolstation;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import mapeper.ticonautotoolstation.modes.IATSMode;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -12,6 +13,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
@@ -36,14 +39,29 @@ public class AutoToolStationBlock extends Block implements ITileEntityProvider
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
 	{
-		if (!world.isRemote)
+		if (player.isSneaking()) {
+			TileEntity tile = world.getTileEntity(x, y, z);
+			if (tile instanceof AutoToolStationTileEntity) {
+				AutoToolStationTileEntity atsTile = (AutoToolStationTileEntity) tile;
+				atsTile.mode = (atsTile.mode + 1) % IATSMode.modes.size();
+				if (world.isRemote)
+				{
+					player.addChatComponentMessage(new ChatComponentText("Client:"));
+					player.addChatComponentMessage(new ChatComponentTranslation("ats.autotoolstation.modechange", atsTile.getMode().getName()));
+				} else {
+					player.addChatComponentMessage(new ChatComponentText("Server:"));
+					player.addChatComponentMessage(new ChatComponentTranslation("ats.autotoolstation.modechange", atsTile.getMode().getName()));
+				}
+				world.notifyBlockChange(tile.xCoord, tile.yCoord, tile.zCoord, this);
+			}
+		}
+		else if (!world.isRemote)
 		{
 			player.openGui(TiConAutoToolStation.instance, 0, world, x, y, z);
 		}
 
 		return true;
 	}
-
 
 	@Override
 	public void breakBlock(World world, int x, int y, int z, Block par5, int par6) {

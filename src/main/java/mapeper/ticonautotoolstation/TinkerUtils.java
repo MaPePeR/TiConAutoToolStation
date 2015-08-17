@@ -2,6 +2,7 @@ package mapeper.ticonautotoolstation;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import org.apache.logging.log4j.Level;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -13,6 +14,7 @@ public class TinkerUtils
 	static Method modifyItemMethod;
 	static Object modifyBuilderInstance;
 	static Class iModifyable;
+	static Method getBaseTagNameMethod;
 	//drawToolStats (ItemStack stack, int x, int y)
 	static Method drawToolStatsMethod;
 	static Field toolStationField;
@@ -25,6 +27,7 @@ public class TinkerUtils
 			modifyItemMethod = clazz.getMethod("modifyItem", ItemStack.class, ItemStack[].class);
 
 			iModifyable = Class.forName("tconstruct.library.modifier.IModifyable");
+			getBaseTagNameMethod = iModifyable.getMethod("getBaseTagName");
 
 			clazz = Class.forName("tconstruct.tools.gui.ToolStationGuiHelper");
 			drawToolStatsMethod = clazz.getMethod("drawToolStats", ItemStack.class, int.class, int.class);
@@ -104,5 +107,21 @@ public class TinkerUtils
 			}
 		}
 		throw new RuntimeException("Could not get toolStationWood from tconstruct.tools.TinkerTools");
+	}
+
+	public static String getBaseTagName(ItemStack itemStack) {
+		if (!isModifyableTool(itemStack)) throw new IllegalArgumentException("ItemStack does not contain IModifiyable");
+		try
+		{
+			Object o  = getBaseTagNameMethod.invoke(itemStack.getItem());
+			if (o instanceof String) {
+				return (String) o;
+			} else {
+				throw new IllegalArgumentException("getBaseTagName did return " + o.getClass().getName() + " instead of String");
+			}
+		} catch (Exception e)
+		{
+			throw new RuntimeException(e);
+		}
 	}
 }
