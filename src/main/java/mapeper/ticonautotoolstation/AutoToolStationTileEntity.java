@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Level;
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
 public class AutoToolStationTileEntity extends TileEntity implements ISidedInventory
 {
+	boolean haveNewToolInSlot;
 	int mode;
 	ItemStack[] inventory;
 
@@ -91,6 +92,11 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
 		inventory[slot] = stack;
+		if (!worldObj.isRemote) {
+			if (stack != null && slot == C.TOOLSLOT) {
+				haveNewToolInSlot = true;
+			}
+		}
 		if (stack != null && stack.stackSize > getInventoryStackLimit()) {
 			stack.stackSize = getInventoryStackLimit();
 		}
@@ -148,7 +154,12 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 				modifierCopy.stackSize = 1;
 
 				ItemStack modifyResult = TinkerUtils.modifyItem(inventory[C.TOOLSLOT], new ItemStack[]{modifierCopy.copy()});
-				modifyResult = getMode().shouldMoveToOutput(inventory[C.TOOLSLOT], modifyResult);
+				if (!haveNewToolInSlot)
+				{
+					modifyResult = getMode().shouldMoveToOutput(inventory[C.TOOLSLOT], modifyResult);
+				} else {
+					haveNewToolInSlot = false;
+				}
 				if (modifyResult == null) {
 					//Could not apply more modifiers
 					if (inventory[C.TOOLOUTSLOT] == null || inventory[C.TOOLOUTSLOT].stackSize == 0)
@@ -187,6 +198,11 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 		} else {
 			mode = 0;
 		}
+		if (tagCompound.hasKey("newTool")) {
+			haveNewToolInSlot = tagCompound.getBoolean("newTool");
+		} else {
+			haveNewToolInSlot = false;
+		}
 	}
 
 	@Override
@@ -219,6 +235,7 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 		}
 		tagCompound.setTag("Inventory", itemList);
 		tagCompound.setInteger("Mode", mode);
+		tagCompound.setBoolean("newTool", haveNewToolInSlot);
 	}
 
 	public IATSMode getMode()
