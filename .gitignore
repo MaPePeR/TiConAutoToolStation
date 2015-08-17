@@ -3,3 +3,6 @@ eclipse/
 .gradle/
 .idea/
 *.iml
+
+permissions.txt
+spoiler.gif
