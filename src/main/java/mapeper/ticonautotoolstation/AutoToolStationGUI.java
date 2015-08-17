@@ -64,15 +64,15 @@ public class AutoToolStationGUI extends GuiContainer
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(icons);
 
+		this.drawTexturedModalRect(cornerX + 56, this.guiTop + 37, 144, 216, 18, 18);
 		if (!this.inventorySlots.getSlot(C.TOOLSLOT).getHasStack()) {
-			this.drawTexturedModalRect(cornerX + (225 - 111), this.guiTop + (38 - 1), 18 * 0, 18 * 13, 18, 18);
+			this.drawTexturedModalRect(cornerX + 56, this.guiTop + 37, 18 * 0, 18 * 13, 18, 18);
 		}
 
 		// Draw the slots
-		int slotX = 56, slotY = 37;
-		this.drawTexturedModalRect(cornerX + slotX, this.guiTop + slotY, 144, 216, 18, 18);
+		this.drawTexturedModalRect(cornerX + 56 - 19, this.guiTop + 37, 144, 216, 18, 18);
 		if (!this.inventorySlots.getSlot(C.MODSLOT).getHasStack()) {
-			this.drawTexturedModalRect(cornerX + slotX, this.guiTop + slotY, 18 * 2, 18 * 13, 18, 18);
+			this.drawTexturedModalRect(cornerX + 56 - 19, this.guiTop + 37, 18 * 2, 18 * 13, 18, 18);
 		}
 
 		// Draw description

@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.Constants;
+import org.apache.logging.log4j.Level;
 
 
 //Thanks to http://www.minecraftforge.net/wiki/Containers_and_GUIs
@@ -16,7 +17,7 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	ItemStack[] inventory;
 
 	public AutoToolStationTileEntity() {
-		inventory = new ItemStack[2];
+		inventory = new ItemStack[3];
 	}
 
 	public static final int[] accessibleSlots = new int[]{C.MODSLOT, C.TOOLSLOT};
@@ -30,13 +31,17 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	@Override
 	public boolean canInsertItem(int slot, ItemStack stack, int side)
 	{
-		return slot == C.MODSLOT;
+		if (TinkerUtils.isModifyableTool(stack)) {
+			return slot == C.TOOLSLOT && (inventory[C.TOOLOUTSLOT] == null || inventory[C.TOOLOUTSLOT].stackSize == 0);
+		} else {
+			return slot == C.MODSLOT;
+		}
 	}
 
 	@Override
 	public boolean canExtractItem(int slot, ItemStack stack, int side)
 	{
-		return slot == C.TOOLSLOT;
+		return slot == C.TOOLOUTSLOT;
 	}
 
 	@Override
@@ -127,7 +132,7 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack)
 	{
-		if (slot == C.TOOLSLOT) return TinkerUtils.isModifyableTool(stack);
+		if (slot == C.TOOLSLOT) return TinkerUtils.isModifyableTool(stack) && (inventory[C.TOOLOUTSLOT] == null || inventory[C.TOOLOUTSLOT].stackSize == 0);
 		return true;
 	}
 
@@ -139,7 +144,18 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 				modifierCopy.stackSize = 1;
 
 				ItemStack modifyResult = TinkerUtils.modifyItem(inventory[C.TOOLSLOT], new ItemStack[]{modifierCopy.copy()});
-				if (modifyResult != null)
+				if (modifyResult == null) {
+					//Could not apply more modifiers
+					if (inventory[C.TOOLOUTSLOT] == null || inventory[C.TOOLOUTSLOT].stackSize == 0)
+					{
+						inventory[C.TOOLOUTSLOT] = inventory[C.TOOLSLOT];
+						inventory[C.TOOLSLOT] = null;
+						this.markDirty();
+					} else {
+						TiConAutoToolStation.LOGGER.log(Level.ERROR, "Auto Tool Station output slot was not empty, but we want to move a tool there!");
+					}
+				}
+				else
 				{
 					decrStackSize(C.MODSLOT, 1);
 					inventory[C.TOOLSLOT] = modifyResult;

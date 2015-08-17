@@ -1,6 +1,7 @@
 package mapeper.ticonautotoolstation.slot;
 
 
+import mapeper.ticonautotoolstation.C;
 import mapeper.ticonautotoolstation.TinkerUtils;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -15,6 +16,7 @@ public class ToolSlot extends Slot
 	}
 
 	public boolean isItemValid(ItemStack stack) {
-		return TinkerUtils.isModifyableTool(stack);
+		ItemStack toolOutSlotContent = inventory.getStackInSlot(C.TOOLOUTSLOT);
+		return TinkerUtils.isModifyableTool(stack) && (toolOutSlotContent == null || toolOutSlotContent.stackSize == 0);
 	}
 }

@@ -1,5 +1,6 @@
 package mapeper.ticonautotoolstation;
 
+import mapeper.ticonautotoolstation.slot.ToolOutSlot;
 import mapeper.ticonautotoolstation.slot.ToolSlot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -15,8 +16,9 @@ public class AutoToolStationContainer extends Container
 	public AutoToolStationContainer(InventoryPlayer inventoryPlayer, AutoToolStationTileEntity te){
 		tileEntity = te;
 
-		addSlotToContainer(new Slot(tileEntity, C.MODSLOT, 56 + 111, 37 + 1));
-		addSlotToContainer(new ToolSlot(tileEntity, C.TOOLSLOT, 225, 38));
+		addSlotToContainer(new Slot(tileEntity, C.MODSLOT, 56 + 111 - 19, 37 + 1));
+		addSlotToContainer(new ToolSlot(tileEntity, C.TOOLSLOT, 56+111, 38));
+		addSlotToContainer(new ToolOutSlot(tileEntity, C.TOOLOUTSLOT, 225, 38));
 
 		//commonly used vanilla code that adds the player's inventory
 		bindPlayerInventory(inventoryPlayer);
@@ -58,7 +60,7 @@ public class AutoToolStationContainer extends Container
 				}
 			}
 			else if (TinkerUtils.isModifyableTool(stack)) {
-				if (!this.mergeItemStack(stackInSlot, C.TOOLSLOT, C.TOOLSLOT + 1, false)) {
+				if (((Slot)this.inventorySlots.get(C.TOOLOUTSLOT)).getHasStack() || !this.mergeItemStack(stackInSlot, C.TOOLSLOT, C.TOOLSLOT + 1, false)) {
 					return null;
 				}
 			}
