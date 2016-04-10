@@ -8,6 +8,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -23,7 +24,11 @@ public class TiConAutoToolStation {
 	@Mod.Instance(MODID)
 	public static TiConAutoToolStation instance;
 
-	AutoToolStationBlock autoToolStationBlockBlock;
+	public static CreativeTab creativeTab = new CreativeTab();
+
+	static AutoToolStationBlock autoToolStationBlockBlock;
+	static Item autoToolStationBlockItem;
+
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -31,6 +36,7 @@ public class TiConAutoToolStation {
 		autoToolStationBlockBlock = new AutoToolStationBlock();
 		GameRegistry.registerBlock(autoToolStationBlockBlock, ItemBlock.class, "ats_autotoolstation");
 		GameRegistry.registerTileEntity(AutoToolStationTileEntity.class, "ats_autotoolstationTile");
+		autoToolStationBlockItem = Item.getItemFromBlock(autoToolStationBlockBlock);
 	}
 
 	@EventHandler

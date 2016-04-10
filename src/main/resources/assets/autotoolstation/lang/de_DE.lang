@@ -8,3 +8,5 @@ ats.autotoolstation.currentMode=Modus:
 ats.autotoolstation.modechange=Modus geändert zu: %s
 ats.autotoolstation.mode.applyUntilDone=Hinzufügen bis fertig.
 ats.autotoolstation.mode.fillOne=Nur ein Modifikator
+
+itemGroup.TiConAutoToolStation=TConstruct Auto Werkzeugstation

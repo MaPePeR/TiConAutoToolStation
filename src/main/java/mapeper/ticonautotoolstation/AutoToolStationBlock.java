@@ -25,6 +25,7 @@ public class AutoToolStationBlock extends Block implements ITileEntityProvider {
 		super(Material.rock);
 		this.setHardness(1.0F);
 		this.setBlockName("ats_autotoolstation");
+		this.setCreativeTab(TiConAutoToolStation.creativeTab);
 	}
 
 	@Override
