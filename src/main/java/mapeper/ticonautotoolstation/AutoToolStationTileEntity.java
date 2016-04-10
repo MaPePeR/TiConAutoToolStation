@@ -24,7 +24,7 @@ public class AutoToolStationTileEntity extends TileEntity implements ISidedInven
 		inventory = new ItemStack[3];
 	}
 
-	public static final int[] accessibleSlots = new int[]{C.MODSLOT, C.TOOLSLOT};
+	public static final int[] accessibleSlots = new int[]{C.MODSLOT, C.TOOLSLOT, C.TOOLOUTSLOT};
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
